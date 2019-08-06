@@ -1,0 +1,123 @@
+<style>
+	.tick-box{
+		position: relative;
+		display: inline-block;
+		border: 1px dashed rgba(0,0,0,0.25);
+		background: rgba(255,255,255,0.8);
+		flex: 0 0 auto;
+		width:30px;
+		height:30px;
+		overflow: visible;
+		transition: all 0.15s ease-in;
+	}
+
+	.item-text{
+		vertical-align: middle;
+		padding-left: 0.5rem;
+		display: inline-block;
+		font-size: 0.8em;
+		flex: 1 1 auto;
+		word-break:break-all;
+	}
+
+	ul.element-sizes{
+		margin:0;
+		padding:0;
+		list-style-type: none;
+		display:flex;
+		flex-flow: row wrap;
+		justify-content: flex-start;
+		align-items:flex-start;
+	}
+
+	ul.element-sizes > li{
+		position: relative;
+		display:flex;
+		justify-content:space-between;
+		align-items: stretch;
+		flex: 0 0 auto;
+		width: calc(30% - 5px);
+		margin-bottom:5px;
+		margin-right:5px;
+	}
+
+	ul.element-sizes > li > input[type="radio"]{
+		position: absolute;
+		display: block;
+		flex: none;
+		top:0;
+		left:0;
+		width: 100%;
+		height: 100%;
+		opacity:0;
+		z-index: 1000;
+	}
+
+	ul.element-sizes > li > label{
+		position: relative;
+		flex: 1 1 auto;
+		display: flex;
+		justify-content: flex-start;
+		align-items: flex-start;
+		align-content: flex-start;
+		border-radius: 6px;
+		background: rgba(0,128,0,0.1);
+		min-height: 30px;
+		padding:0.25em;
+		margin:0;
+		transition: all 0.15s ease-in;
+	}
+
+	ul.element-sizes > li > input[type="radio"]:checked + label{
+		background: #149B64;
+		color: #fff;
+	}
+
+	ul.element-sizes > li > input[type="radio"]:checked + label > .tick-box{
+		border:1px solid #000;
+		background: #fff;
+	}
+
+	ul.element-sizes > li > input[type="radio"]:checked + label > .tick-box:before {
+		position: absolute;
+		top: 50%;
+		left:50%;
+		transform: translate(-50%, -50%);
+		content: '\2713';
+		font-weight: bold;
+		color: #149B64;
+		text-shadow: -2px 0 0 rgba(255,255,255,0.5), 0 -2px 0 rgba(255,255,255,0.5), 0 2px 0 rgba(255,255,255,0.5), 2px 0 0 rgba(255,255,255,0.5);
+	}
+
+	.select-element-size-panel h4{
+		font-size: 15px;
+		font-weight: bold;
+	}
+
+
+	@media (max-width: 991px){
+		ul.element-sizes > li{
+			width: calc(50% - 5px);
+		}
+	}
+
+	@media (max-width: 767px){
+		ul.element-sizes > li{
+			width: 100%;
+		}
+	}
+
+
+</style>
+
+<div ng-controller="eff.element.sizesController">
+	<div class="select-element-size-panel">
+		<h4><localize key="labels_ElementSize">Element size</localize></h4>
+		<ul class="element-sizes">
+			<li ng-repeat="elmSize in elementSizes" ng-model="model.value" >
+				<input id="element_size_{{elmSize.value}}" type="radio" name="elementSize" ng-model="model.value" value="{{elmSize.value}}" ng-checked="elmSize.value == model.value" />
+				<label for="element_size_{{elmSize.value}}"><span class="tick-box"></span><i class="icon icon-element-width-{{elmSize.value}}"></i><span class="item-text"><localize  class="ng-isolate-scope ng-scope" key="prevalues_{{elmSize.dictionaryKey}}">{{elmSize.name}}</localize></span></label>
+			</li>
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,42 @@
+@using umbraco.MacroEngines
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{ 
+	var thisPage = Model.Content;
+	var homePage = Model.Content.AncestorOrSelf(1);
+}
+
+@if (homePage.HasValue("footerContentFolder"))
+{
+	var folderId = homePage.GetPropertyValue<IEnumerable<IPublishedContent>>("footerContentFolder").ToList().First();
+	var folder = Umbraco.TypedContent(folderId.ToString());
+	var featuredPagesList = folder.Children.Any() ? folder.Children().Where("visible") : null;
+	var numOfFeaturedItems = featuredPagesList.Count();
+	var numPartCssClass = "third";
+
+
+	<div class="container footer-elements-wrap">
+		<ul class="footer-elements @numPartCssClass">
+			@foreach (var item in featuredPagesList.OrderBy("SortOrder"))
+			{
+				var hasHeading = item.HasValue("headline");
+				var itemHeadline = hasHeading ? item.GetPropertyValue("headline") : string.Empty;
+				var itemText = item.HasValue("bodyText") ? Html.Raw(item.GetPropertyValue("bodyText")) : Html.Raw(string.Empty);
+				var itemWidth = item.HasValue("footerElementWidth") ? item.GetPropertyValue("footerElementWidth") : "auto";
+				var cssHasHeading = hasHeading ? "padding-top-xl" : string.Empty;
+
+
+				<li class="footer-element @itemWidth">
+					@if (hasHeading)
+					{
+						<h3>@itemHeadline</h3>
+					}
+					
+					<div class="body-text @(cssHasHeading)">
+						@itemText
+					</div>
+				</li>
+			}
+		</ul>
+	</div>
+} 

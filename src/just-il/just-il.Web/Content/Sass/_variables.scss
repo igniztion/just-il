@@ -1,0 +1,79 @@
+
+$color-bright: #fff;
+$color-black: #000;
+$color-dark: #222;
+
+$color-accent: #f58124;
+
+$color-gray-light: #ebebeb;
+$color-gray-medium: #999;
+$color-gray-dark: #404040;
+
+
+$color-black-tr05: rgba(0,0,0,0.05);
+$color-black-tr10: rgba(0,0,0,0.10);
+$color-black-tr20: rgba(0,0,0,0.20);
+$color-black-tr25: rgba(0,0,0,0.25);
+$color-black-tr50: rgba(0,0,0,0.50);
+$color-black-tr75: rgba(0,0,0,0.75);
+$color-black-tr80: rgba(0,0,0,0.80);
+$color-black-tr90: rgba(0,0,0,0.90);
+
+$color-white-tr05: rgba(255,255,255,0.05);
+$color-white-tr10: rgba(255,255,255,0.10);
+$color-white-tr20: rgba(255,255,255,0.20);
+$color-white-tr25: rgba(255,255,255,0.25);
+$color-white-tr50: rgba(255,255,255,0.50);
+$color-white-tr75: rgba(255,255,255,0.75);
+$color-white-tr80: rgba(255,255,255,0.80);
+$color-white-tr90: rgba(255,255,255,0.90);
+$color-white-tr95: rgba(255,255,255,0.95);
+
+$font-family-serif: 'Droid Serif' ,'Times New Roman', Times, serif;
+$font-family-sans: 'Ubuntu', Arial, Helvetica, sans;
+
+
+$icon-ef-home: "\e900";
+$icon-ef-menu: "\e901";
+$icon-ef-grid: "\e902";
+$icon-ef-options: "\e903";
+$icon-ef-options-vertical: "\e904";
+$icon-ef-settings: "\e905";
+$icon-ef-pencil: "\e906";
+$icon-ef-calender: "\e907";
+$icon-ef-paper-clip: "\e908";
+$icon-ef-magnifier: "\e909";
+$icon-ef-magnifier-add: "\e90a";
+$icon-ef-magnifier-remove: "\e90b";
+$icon-ef-plus-circle: "\e90c";
+$icon-ef-minus-circle: "\e90d";
+$icon-ef-check-circle: "\e90e";
+$icon-ef-close-circle: "\e90f";
+$icon-ef-info-circle: "\e910";
+$icon-ef-folder: "\e911";
+$icon-ef-folder-alt: "\e912";
+$icon-ef-camera: "\e913";
+$icon-ef-chevron-down: "\e914";
+$icon-ef-chevron-left: "\e915";
+$icon-ef-chevron-right: "\e916";
+$icon-ef-chevron-up: "\e917";
+$icon-ef-share: "\e918";
+$icon-ef-facebook: "\e919";
+$icon-ef-linked-in: "\e91a";
+$icon-ef-twitter: "\e91b";
+
+@font-face {
+    font-family: 'BPdots';
+    src:url('/Static/fonts/bpdots/BPdots.ttf.woff') format('woff'),
+        url('/Static/fonts/bpdots/BPdots.ttf.svg#BPdots') format('svg'),
+        url('/Static/fonts/bpdots/BPdots.ttf.eot'),
+        url('/Static/fonts/bpdots/BPdots.ttf.eot?#iefix') format('embedded-opentype'); 
+    font-weight: normal;
+    font-style: normal;
+}
+
+$margin-small: 0.5rem;
+$margin-normal: 1rem;
+$margin-large: 2rem;
+$margin-xlarge: 3rem;
+$item-margins: 1rem;

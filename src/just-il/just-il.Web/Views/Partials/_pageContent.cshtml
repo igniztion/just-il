@@ -1,0 +1,29 @@
+@using umbraco.MacroEngines
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{ 
+	var thisPage = Model.Content;
+	var homePage = thisPage.AncestorOrSelf(1);
+	var pageHeadline = thisPage.HasValue("headline") ? thisPage.GetPropertyValue<string>("headline") : string.Empty;
+	var hideBodyText = (ViewData["hideBody"] != null);
+	var onlyBodyText = (ViewData["onlyBody"] != null);
+}
+<article class="panel-content page-main-content">
+	<div class="panel-content-inner">
+		@if (pageHeadline != string.Empty && onlyBodyText == false)
+		{
+			<h1 class="headline-fat">@pageHeadline</h1>
+		}
+		@if (thisPage.HasValue("lead") && onlyBodyText == false)
+		{
+			<div class="lead">
+				@Html.Raw(thisPage.GetPropertyValue("lead"))
+			</div>
+		}
+		@if (thisPage.HasValue("bodyText") && hideBodyText == false)
+		{
+			<div class="body-text">
+				@Html.Raw(thisPage.GetPropertyValue("bodyText"))
+			</div>
+		}
+	</div>
+</article>

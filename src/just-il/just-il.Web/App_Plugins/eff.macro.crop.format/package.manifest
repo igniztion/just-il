@@ -1,0 +1,15 @@
+{
+ "propertyEditors": [ 
+ {
+    "alias": "eff.macro.crop.format",
+    "name": "CropFormat",
+    "isParameterEditor": true,
+    "editor": {
+        "view": "~/App_Plugins/eff.macro.crop.format/crop.format.html",
+        "valueType": "STRING"
+    }
+}],
+ "javascript": [
+    "~/App_Plugins/eff.macro.crop.format/crop.format.controller.js"
+ ]
+}

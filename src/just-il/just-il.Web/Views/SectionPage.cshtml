@@ -1,0 +1,30 @@
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = "MasterLayout.cshtml";
+	var thisPage = Model.Content;
+	var homePage = thisPage.AncestorOrSelf(1);
+	var displayMenu = thisPage.HasValue("hideAsideNavigation") ? !thisPage.GetPropertyValue<bool>("hideAsideNavigation") : true;
+	var hasMenuClass = displayMenu == true ? "menu-visible" : string.Empty;
+}
+<!--<ContentModels.SectionPage>-->
+@Html.Partial("_PageMainImage")
+<section class="page-strip page-breadcrumbs-wrap">
+	<div class="container">
+		<section class="page-breadcrumbs">
+			@Html.Partial("_pageBreadCrumbs")
+		</section>
+	</div>
+</section>
+
+<div class="page-strip">
+	<div class="container">
+		<section class="page-section @hasMenuClass">
+			@Html.Partial("_pageAsideMenu")
+	
+			@Html.Partial("_pageContent")
+
+			@Html.Partial("_ChildArticlesList")
+		</section>
+	</div>
+</div>

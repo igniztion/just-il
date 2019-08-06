@@ -1,0 +1,15 @@
+{
+  "propertyEditors": [
+	{
+		"alias": "eff.element.sizes",
+		"name": "ElementSize",
+		"isParameterEditor": true,
+		"editor": {
+			"view": "~/App_Plugins/eff.element.sizes/element.size.html",
+			"valueType": "STRING"
+		}
+	}],
+  "javascript": [
+	"~/App_Plugins/eff.element.sizes/element.size.controller.js"
+ ]
+}

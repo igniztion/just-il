@@ -1,0 +1,56 @@
+@using umbraco.MacroEngines
+@using System.Web.Mvc
+@using RJP.MultiUrlPicker.Models
+@using umbraco.editorControls
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{ 
+	var thisPage = Model.Content;
+	var homePage = thisPage.AncestorOrSelf(1);
+	var footerElements = homePage.HasValue("footerContentItems") ? homePage.GetPropertyValue<IEnumerable<IPublishedContent>>("footerContentItems") : new List<IPublishedContent>();
+}
+<section class="footer-content-band">
+	<div class="container">
+		<div class="footer-content">
+			<div class="footer-element logo">
+				@Html.Partial("_LogoLinked", Model, new ViewDataDictionary {{"useNeg", "true"}})
+			</div>
+			@if (footerElements.Any())
+			{
+				foreach (var footerElement in footerElements)
+				{
+					var elementHeadline = footerElement.HasValue("footerItemHeadline") ? footerElement.GetPropertyValue<string>("footerItemHeadline") : footerElement.Name;
+					var elementText = footerElement.HasValue("footerItemText") ? Html.Raw(footerElement.GetPropertyValue("footerItemText")) : new HtmlString(string.Empty);
+					var elementLinks = footerElement.HasValue("footerItemLinkList") ? footerElement.GetPropertyValue<IEnumerable<Link>>("footerItemLinkList") : new List<Link>();
+					var elementWidth = Math.Round(75 / Convert.ToDouble(footerElements.Count()), 1);
+					var elementCssClass = "width-" + elementWidth.ToString().Replace('.', '_');
+
+					<div class="footer-element @elementCssClass">
+						<div class="inner">
+						<h3>@elementHeadline</h3>
+						@if (elementText.ToString() != string.Empty)
+						{
+							<div class="element-text">
+								@Html.Raw(elementText)
+							</div>
+						}
+
+						@if (elementLinks.Any())
+						{
+							<div class="element-links-wrap">
+								<ul class="footer-element-links">
+									@foreach (var link in elementLinks)
+									{
+										<li>@link.Name</li>
+									}
+								</ul>
+							</div>
+						}
+						</div>
+					</div>
+				}
+			}
+		</div>
+	</div>
+</section>
+
+

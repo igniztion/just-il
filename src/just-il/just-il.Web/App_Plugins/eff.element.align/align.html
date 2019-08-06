@@ -1,0 +1,140 @@
+<style>
+	ul.eff-mpar-radio-options{
+		position: relative;
+		margin:0;
+		padding:0;
+		list-style-type: none;
+		display:flex;
+		flex-flow:row wrap;
+		justify-content:space-between;
+	}
+
+	ul.eff-mpar-radio-options > li{
+		position: relative;
+		display: inline-block;
+		justify-content:space-between;
+		align-items: center;
+		flex: 1 0 auto;
+		float:left;
+		width: calc(20% - 5px);
+		margin-right: 5px;
+	}
+
+	ul.eff-mpar-radio-options > li:last-of-type{
+		margin-right: 0;
+	}
+
+	ul.eff-mpar-radio-options > li > input[type="radio"]{
+		position: absolute;
+		flex: none;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		opacity:0;
+		z-index: 1000;
+	}
+
+	ul.eff-mpar-radio-options > li > input[type="radio"] + label{
+		display: block;
+		position: relative;
+		padding: 0.5em 0.25em 0.5em 2em;
+		font-size: 0.8rem;
+		text-align: left;
+		border-radius: 4px;
+		border: 1px solid transparent;
+		transition: all 0.1s ease-in;
+	}
+
+	ul.eff-mpar-radio-options > li > input[type="radio"] + label i{
+		font-style:normal;
+	}
+
+	ul.eff-mpar-radio-options > li > input[type="radio"] + label:before{
+		position: absolute;
+		left: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		display: inline-block;
+		width: 1em;
+		height: 1em;
+		font-size: 1rem;
+		content: '';
+		border: 1px solid rgba(0,0,0,0.1);
+		border-radius: 50%;
+		background: none;
+		box-shadow: 1px 1px 1px rgba(0,0,0,0.1) inset;
+		transition: all 0.1s ease-in;
+		color: #fff;
+	}
+
+
+	ul.eff-mpar-radio-options > li > input[type="radio"]:checked + label{
+		background: #149B64;
+		color: #fff;
+	}
+
+	ul.eff-mpar-radio-options > li > input[type="radio"].not-set:checked + label{
+		background: transparent;
+		border: 1px dashed #149B64;
+		color: #999999;
+	}
+
+
+	/*2715*/
+
+	ul.eff-mpar-radio-options > li > input[type="radio"]:checked + label:before{
+		position: absolute;
+		left: 0.125em;
+		top: 50%;
+		transform: translateY(-50%);
+		display: inline-block;
+		width: 0.8em;
+		height: 0.8em;
+		background: none;
+		box-shadow: none;
+		font-size: 1.25rem;
+		content: '\2713';
+		color: #999;
+		border: 1px solid transparent;
+	}
+
+	ul.eff-mpar-radio-options > li > input[type="radio"].not-set:checked + label:before{
+		content: '\2715';
+	}
+
+
+	@media only screen and (max-width: 550px){
+		ul.eff-mpar-radio-options{
+			position:relative;
+			display: inline-flex;
+			flex-flow: column nowrap;
+			justify-content:flex-start;
+			align-items:flex-end;
+			margin-left:2rem;
+			width: auto;
+			min-width:50%;
+			right:-50%;
+			transform: translateX(-25%);
+		}
+
+		ul.eff-mpar-radio-options > li{
+			display:block;
+			width:100%;
+			margin-right:0;
+		}
+
+
+
+	}
+</style>
+
+<div ng-controller="eff.element.AlignController">
+	<ul class="eff-mpar-radio-options">
+		<li ng-repeat="position in positions" id="selectstatus-{{position.Name}}">
+			<input id="radio_align_{{position.Value}}" type="radio" name="position" ng-model="model.value" value="{{position.Value}}"  ng-checked="position.Value == model.value" />
+			<label for="radio_align_{{position.Value}}"><i class="icon icon-{{position.CssClass}}"></i><localize key="prevalues_{{position.DictionaryKey}}">{{position.Name}}</localize></label>
+		</li>
+	</ul>
+
+</div>

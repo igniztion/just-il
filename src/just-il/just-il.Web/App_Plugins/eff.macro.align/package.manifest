@@ -1,0 +1,15 @@
+{
+ "propertyEditors": [ 
+ {
+    "alias": "eff.macro.align",
+    "name": "Align",
+    "isParameterEditor": true,
+    "editor": {
+        "view": "~/App_Plugins/eff.macro.align/align.html",
+        "valueType": "STRING"
+    }
+}],
+ "javascript": [
+    "~/App_Plugins/eff.macro.align/align.controller.js"
+ ]
+}

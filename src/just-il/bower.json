@@ -1,0 +1,23 @@
+{
+  "name": "effera-umbsp",
+  "version": "1.0.0",
+  "authors": [
+    "effera"
+  ],
+  "license": "ISC",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "~3.3.7",
+    "slick-carousel": "latest",
+    "slick-lightbox": "latest",
+    "jquery-lazy": "latest",
+    "masonry": "latest",
+    "imagesloaded": "latest"
+  }
+}

@@ -1,0 +1,8 @@
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = null;
+	var homePage = Model.Content.AncestorOrSelf(1);
+	// Permanently redirect all requests for this template to home page.
+	Response.RedirectPermanent(homePage.Url);
+}

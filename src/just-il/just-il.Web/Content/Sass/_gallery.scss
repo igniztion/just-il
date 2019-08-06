@@ -1,0 +1,19 @@
+.gallery {
+
+    &-image {
+        max-width: 100%;
+
+        &-info-overlay {
+
+            &-container {
+                position: absolute;
+                bottom: 10px;
+                left: 10%;
+            }
+        }
+    }
+}
+
+.slick-lightbox-slick-item-inner {
+    position: relative;
+}

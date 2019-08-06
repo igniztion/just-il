@@ -1,0 +1,100 @@
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.DoctypeContactsPage>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = "MasterLayout.cshtml";
+}
+@{
+	Layout = "MasterLayout.cshtml";
+	var thisPage = Model.Content;
+	var homePage = thisPage.AncestorOrSelf(1);
+	var displayMenu = thisPage.HasValue("hideAsideNavigation") ? !thisPage.GetPropertyValue<bool>("hideAsideNavigation") : true;
+	var hasMenuClass = displayMenu == true ? "menu-visible" : string.Empty;
+	var pageHeadline = thisPage.HasValue("headline") ? thisPage.GetPropertyValue<string>("headline") : string.Empty;
+	var hideBodyText = (ViewData["hideBody"] != null);
+	var onlyBodyText = (ViewData["onlyBody"] != null);
+}
+<!--<ContentModels.SectionPage>-->
+@Html.Partial("_PageMainImage")
+<section class="page-strip page-breadcrumbs-wrap">
+	<div class="container">
+		<section class="page-breadcrumbs">
+			@Html.Partial("_pageBreadCrumbs")
+		</section>
+	</div>
+</section>
+
+<div class="page-strip">
+
+	<section class="page-section @hasMenuClass">
+		<div class="container">
+			@Html.Partial("_pageAsideMenu")
+		
+			<div class="panel-content-inner">
+			@if (pageHeadline != string.Empty && onlyBodyText == false)
+			{
+				<h1 class="headline-fat">@pageHeadline</h1>
+			}
+			@if (thisPage.HasValue("lead") && onlyBodyText == false)
+			{
+				<div class="lead">
+					@Html.Raw(thisPage.GetPropertyValue("lead"))
+				</div>
+			}
+			@if (thisPage.HasValue("contacts"))
+			{
+				<section class="list-contacts">
+					@foreach (IPublishedContent contact in thisPage.GetPropertyValue<IEnumerable<IPublishedContent>>("contacts"))
+					{
+						var contactFullName = contact.GetPropertyValue<string>("firstName") + " " + contact.GetPropertyValue<string>("lastName");
+						var contactImage = contact.HasValue("image") ? Umbraco.TypedMedia(contact.GetPropertyValue<int>("image")) : null;
+						var contactWorkTitle = contact.HasValue("workTitle") ? contact.GetPropertyValue<string>("workTitle") : string.Empty;
+						var contactDepartment = contact.HasValue("department") ? ", " + contact.GetPropertyValue<string>("department") : string.Empty;
+
+						<article class="list-item">
+							<div class="item-image">
+								@if (contactImage != null)
+								{
+									<img alt="@contactImage.Name" src="@contactImage.GetCropUrl("16x9-M")"/>
+								}
+							</div>
+							<div class="item-text">
+								<h3>@contactFullName</h3>
+								<div class="item-position-info">
+									<span class="contact-worktitle">@contactWorkTitle</span><span class="contact-worktitle">@contactDepartment</span>
+								</div>
+								<div class="item-lead">
+									@if (contact.HasValue("lead"))
+									{
+										@Html.Raw(contact.GetPropertyValue("lead"))									
+									}
+								</div>
+								<div class="item-contact-info">
+									@if (contact.HasValue("email"))
+									{
+										<div class="contact-worktitle"><span class="label">E-post:</span><span class="value">@contact.GetPropertyValue("email")</span></div>
+									}
+
+									@if (contact.HasValue("phone"))
+									{
+										<div class="contact-worktitle"><span class="label">Telefon:</span><span class="value">@contact.GetPropertyValue("phone")</span></div>
+									}
+								</div>
+							</div>
+						</article>
+					}
+				</section>
+			}
+			@if (thisPage.HasValue("bodyText") && hideBodyText == false)
+			{
+				<div class="body-text">
+					@Html.Raw(thisPage.GetPropertyValue("bodyText"))
+				</div>
+			}
+		</div>
+		</div>
+			</article>			
+
+			@Html.Partial("_ChildArticlesList")
+		</section>
+
+</div>

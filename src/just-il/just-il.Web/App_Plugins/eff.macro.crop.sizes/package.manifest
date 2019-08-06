@@ -1,0 +1,17 @@
+{
+  "propertyEditors": [
+	{
+		"alias": "eff.macro.crop.sizes",
+		"name": "Crop size",
+		"isParameterEditor": true,
+		"editor": {
+			"view": "~/App_Plugins/eff.macro.crop.sizes/crop.size.html",
+			"valueType": "STRING",
+			"label": "Crop size (m)",
+			"description":  "The size of the inserted image"
+		}
+	}],
+  "javascript": [
+	"~/App_Plugins/eff.macro.crop.sizes/crop.size.controller.js"
+ ]
+}

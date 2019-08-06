@@ -1,0 +1,27 @@
+@using umbraco.MacroEngines
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+@{
+	var thisPage = Model.Content;
+	var metaTitle = thisPage.HasValue("headline") ? thisPage.GetPropertyValue<string>("headline") : thisPage.Name.ToString();
+	var ogDescription = thisPage.HasValue("lead") ? Html.Raw(thisPage.GetPropertyValue("lead")).ToString().StripHtml() : string.Empty;
+	string ogImage = string.Empty;
+	if (thisPage.HasValue("mainImage") && (Umbraco.TypedMedia(thisPage.GetPropertyValue<Int32>("mainImage")).IsVisible()))
+	{
+		ogImage = String.Format("{0}://{1}{2}", @Request.Url.Scheme, @Request.Url.Host, @Umbraco.TypedMedia(thisPage.GetPropertyValue<Int32>("mainImage")).GetCropUrl("3x2-M"));
+	}
+}
+<meta property="og:locale" content="@Culture" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="@metaTitle" />
+<meta property="og:description" content="@ogDescription" />
+<meta property="og:url" content="@Request.Url" />
+<meta property="og:site_name" content="@Umbraco.GetDictionaryValue("label.SiteName", "strai.no")"/>
+@if (ogImage != string.Empty)
+{
+	<meta property="og:image" content="@ogImage" />
+	<meta property="og:image:type" content="image/jpg" />
+	<meta property="og:image:width" content="500" />
+	<meta property="og:image:height" content="333" />
+}
+

@@ -1,0 +1,51 @@
+@inherits UmbracoViewPage<ContentModels.IImageGallery>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+
+@{ 
+
+    bool showInfo = Model.ImageGalleryShowInfo;
+    bool useGrid = Model.ImageGalleryShowAsGrid;
+    string heading = Model.ImageGalleryHeading;
+    IEnumerable<IPublishedContent> images = Model.ImageGalleryImages;
+
+    var baseURL = ViewData["baseURL"] as string;
+
+}
+
+@if (images != null && images.Any())
+{
+
+    if (string.IsNullOrEmpty(heading) == false)
+    {
+        <h3>@heading</h3>
+    }
+
+    <div class="gallery-wrap">
+
+        @if (useGrid == true)
+        {
+            <div class="gallery-grid">
+                @foreach (var image in images)
+                {
+                    IPublishedContent typedImage = Umbraco.TypedMedia(image.Id);
+                    Html.RenderPartial("~/Views/Partials/_GalleryImage.cshtml", typedImage, new ViewDataDictionary { { "showInfo", showInfo }, { "baseURL", baseURL } });
+                }
+            </div>
+        }
+        else
+        {
+			<ul class="gallery-carousel">
+				@foreach (var image in images)
+				{
+					<li>
+						@{  IPublishedContent typedImage = Umbraco.TypedMedia(image.Id);
+                            Html.RenderPartial("~/Views/Partials/_GalleryImage.cshtml", typedImage, new ViewDataDictionary { { "showInfo", showInfo }, { "crop", "16x9-L" }, { "baseURL", baseURL }, { "lazyLoad", false } });
+						}
+					</li>
+				}
+			</ul>
+        }
+
+    </div>
+
+}

@@ -1,0 +1,71 @@
+
+@using umbraco.MacroEngines
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@using RJP.MultiUrlPicker.Models;
+
+@{
+	var thisPage = Model.Content;
+	var homePage = thisPage.Site();
+	var menuList = homePage.HasValue("mainNavigation") ? homePage.GetPropertyValue<IEnumerable<IPublishedContent>>("mainNavigation") : null;
+	var serviceNav = homePage.HasValue("serviceNavigation") ? homePage.GetPropertyValue<IEnumerable<Link>>("serviceNavigation") : null;
+}
+
+@if (menuList != null && menuList.Count() > 0)
+{
+	<nav class="nav-main">
+		<div class="nav-main-desktop">
+			@MainNavList(menuList, homePage)
+		</div>
+
+		<div class="nav-main-device">
+			<button id="navMainToggle" class="btn btn-nav-toggle"><i class="icon icon-ef-menu"></i><span class="link-text">Meny</span></button>
+			<div class="nav-main-device-panel">
+				<button id="navMainClose" class="btn btn-nav-toggle"><i class="icon icon-ef-close-circle"></i><span class="link-text">Lukk</span></button>
+				<div class="inner">
+					@MainNavList(menuList, homePage, "device")
+					<div class="menu-spacer"></div>
+					@ServiceNavList(serviceNav, "device")
+				</div>
+			</div>
+		</div>
+
+
+	</nav>
+}
+
+
+@helper MainNavList(IEnumerable<IPublishedContent> menuList, IPublishedContent homePage, string cssClass = "")
+{
+	<ul class="nav-list @cssClass">
+		@foreach (var item in menuList)
+		{
+			<li class="nav-item">
+				<a class="nav-link" href="@item.Url">
+					@if (item.Url == homePage.Url)
+					{
+						<i class="glyphicon glyphicon-home"></i>
+					}
+					else
+					{
+						@item.Name
+					}
+				</a>
+			</li>
+		}
+	</ul>	
+}
+
+@helper ServiceNavList(IEnumerable<Link> serviceNav, string cssClass = "")
+{
+	<ul class="nav-list @cssClass">
+		@foreach (var item in serviceNav)
+		{
+			<li class="nav-item">
+				<a class="nav-link" href="@item.Url" target="@item.Target">
+					@item.Name
+				</a>
+			</li>
+		}
+	</ul>	
+}

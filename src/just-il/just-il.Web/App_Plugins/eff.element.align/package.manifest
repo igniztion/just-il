@@ -1,0 +1,16 @@
+{
+	"propertyEditors": [
+		{
+			"alias": "eff.element.align",
+			"name": "Element align",
+			"isParameterEditor": true,
+			"editor": {
+				"view": "~/App_Plugins/eff.element.align/align.html",
+				"valueType": "STRING"
+			}
+		}
+	],
+	"javascript": [
+		"~/App_Plugins/eff.element.align/align.controller.js"
+	]
+}

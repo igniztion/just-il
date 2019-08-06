@@ -1,0 +1,22 @@
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.HomePage>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = "MasterLayout.cshtml";
+	var thisPage = Model.Content;
+}
+@if (thisPage.HasValue("heroImage"))
+{
+	<section class="page-strip hero-outer">
+		@Html.Partial("Partials/_PageHero")
+	</section>
+}
+<section class="page-strip">
+	<div class="container">
+		<section class="page-section">
+			@Html.Partial("_FocusArticlesList")
+		</section>
+		<section class="page-section">
+			@Html.Partial("Partials/_pageContent")
+		</section>
+	</div>
+</section>

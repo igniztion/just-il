@@ -1,0 +1,175 @@
+@import "_variables";
+@import "_mixins";
+
+$icomoon-font-path: "/Static/fonts/icons/" !default;
+
+
+
+@font-face {
+  font-family: 'web-icons';
+  src:  url('/Static/fonts/icons/web-icons.eot?r45plf');
+  src:  url('/Static/fonts/icons/web-icons.eot?r45plf#iefix') format('embedded-opentype'),
+    url('/Static/fonts/icons/web-icons.woff2?r45plf') format('woff2'),
+    url('/Static/fonts/icons/web-icons.woff?r45plf') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-ef-"], [class*=" icon-ef-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'web-icons' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  
+  /* Enable Ligatures ================ */
+  letter-spacing: 0;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  font-feature-settings: "liga";
+  -webkit-font-variant-ligatures: discretionary-ligatures;
+  font-variant-ligatures: discretionary-ligatures;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-ef-home {&:before {content: $icon-ef-home;}}
+.icon-ef-menu {&:before {content: $icon-ef-menu;}}
+.icon-ef-grid {
+  &:before {
+    content: $icon-ef-grid;
+  }
+}
+.icon-ef-options {
+  &:before {
+    content: $icon-ef-options;
+  }
+}
+.icon-ef-options-vertical {
+  &:before {
+    content: $icon-ef-options-vertical;
+  }
+}
+.icon-ef-settings {
+  &:before {
+    content: $icon-ef-settings;
+  }
+}
+.icon-ef-pencil {
+  &:before {
+    content: $icon-ef-pencil;
+  }
+}
+.icon-ef-calender {
+  &:before {
+    content: $icon-ef-calender;
+  }
+}
+.icon-ef-paper-clip {
+  &:before {
+    content: $icon-ef-paper-clip;
+  }
+}
+.icon-ef-magnifier {
+  &:before {
+    content: $icon-ef-magnifier;
+  }
+}
+.icon-ef-magnifier-add {
+  &:before {
+    content: $icon-ef-magnifier-add;
+  }
+}
+.icon-ef-magnifier-remove {
+  &:before {
+    content: $icon-ef-magnifier-remove;
+  }
+}
+.icon-ef-plus-circle {
+  &:before {
+    content: $icon-ef-plus-circle;
+  }
+}
+.icon-ef-minus-circle {
+  &:before {
+    content: $icon-ef-minus-circle;
+  }
+}
+.icon-ef-check-circle {
+  &:before {
+    content: $icon-ef-check-circle;
+  }
+}
+.icon-ef-close-circle {
+  &:before {
+    content: $icon-ef-close-circle;
+  }
+}
+.icon-ef-info-circle {
+  &:before {
+    content: $icon-ef-info-circle;
+  }
+}
+.icon-ef-folder {
+  &:before {
+    content: $icon-ef-folder;
+  }
+}
+.icon-ef-folder-alt {
+  &:before {
+    content: $icon-ef-folder-alt;
+  }
+}
+.icon-ef-camera {
+  &:before {
+    content: $icon-ef-camera;
+  }
+}
+.icon-ef-chevron-down {
+  &:before {
+    content: $icon-ef-chevron-down;
+  }
+}
+.icon-ef-chevron-left {
+  &:before {
+    content: $icon-ef-chevron-left;
+  }
+}
+.icon-ef-chevron-right {
+  &:before {
+    content: $icon-ef-chevron-right;
+  }
+}
+.icon-ef-chevron-up {
+  &:before {
+    content: $icon-ef-chevron-up;
+  }
+}
+.icon-ef-share {
+  &:before {
+    content: $icon-ef-share;
+  }
+}
+.icon-ef-facebook {
+  &:before {
+    content: $icon-ef-facebook;
+  }
+}
+.icon-ef-linked-in {
+  &:before {
+    content: $icon-ef-linked-in;
+  }
+}
+.icon-ef-twitter {
+  &:before {
+    content: $icon-ef-twitter;
+  }
+}
+

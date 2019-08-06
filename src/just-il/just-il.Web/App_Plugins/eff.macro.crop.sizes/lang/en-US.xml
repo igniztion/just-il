@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language alias="en-US" intName="English US" localName="English US" lcid="1033" culture="en-US">
+	<area alias="prevalues">
+		<key alias="SizeXL">Extra Large (1200)</key>
+		<key alias="SizeL">Large (800)</key>
+		<key alias="SizeM">Medium (500)</key>
+		<key alias="SizeS">Small (375)</key>
+		<key alias="SizeXS">Extra small (250)</key>
+	</area>
+</language>

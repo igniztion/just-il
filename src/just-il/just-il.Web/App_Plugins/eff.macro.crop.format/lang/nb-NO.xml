@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language alias="nb" intName="Norwegian bokmal" localName="Norsk bokmål" lcid="1044" culture="nb-NO">
+	<area alias="prevalues">
+		<key alias="FormatGolden">Det gyldne snitt (16:9)</key>
+		<key alias="FormatSquare">Firkantet (1:1)</key>
+		<key alias="FormatPortrait">Portrett (2:3)</key>
+		<key alias="FormatNormal">Normal (3:2)</key>
+		<key alias="FormatBanner">Banner (4:1)</key>
+	</area>
+</language>

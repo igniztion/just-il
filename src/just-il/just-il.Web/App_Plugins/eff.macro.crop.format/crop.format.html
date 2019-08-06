@@ -1,0 +1,100 @@
+<style>
+	.item-illustration{
+		position: relative;
+		display: inline-block;
+		border: 1px dashed rgba(0,0,0,0.25);
+		background: rgba(255,255,255,0.8);
+		flex: 0 0 auto;
+		width:30px;
+		overflow: visible;
+		transition: all 0.15s ease-in;
+	}
+
+	.item-text{
+		vertical-align: middle;
+		padding-left: 0.5rem;
+		display: inline-block;
+		font-size: 0.8em;
+		flex: 1 1 auto;
+	}
+
+	ul.crop-formats{
+		margin:0;
+		padding:0;
+		list-style-type: none;
+		display:flex;
+		flex-flow: row wrap;
+		justify-content: space-between;
+		align-items: stretch;
+	}
+
+	ul.crop-formats > li{
+		position: relative;
+		display:flex;
+		justify-content:space-between;
+		align-items: stretch;
+		flex: 1 0 auto;
+		width: 30%;
+		margin-bottom:5px;
+		margin-right:5px;
+	}
+
+	ul.crop-formats > li > input[type="radio"]{
+		position: absolute;
+		display: inline-block;
+		flex: none;
+		top:0;
+		left:0;
+		width: 100%;
+		height: 100%;
+		opacity:0;
+		z-index: 1000;
+	}
+
+	ul.crop-formats > li > label{
+		position: relative;
+		flex: 1 1 auto;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		align-content: center;
+		border-radius: 6px;
+		background: rgba(0,128,0,0.1);
+		min-height: 45px;
+		padding:0.25em;
+		margin:0;
+		transition: all 0.15s ease-in;
+	}
+
+	ul.crop-formats > li > input[type="radio"]:checked + label{
+		background: #149B64;
+		color: #fff;
+	}
+
+	ul.crop-formats > li > input[type="radio"]:checked + label > .item-illustration{
+		border:1px solid #000;
+		background: #fff;
+	}
+
+	ul.crop-formats > li > input[type="radio"]:checked + label > .item-illustration:before {
+		position: absolute;
+		top: 50%;
+		left:50%;
+		transform: translate(-50%, -50%);
+		content: '\2713';
+		font-weight: bold;
+		color: #149B64;
+		text-shadow: -2px 0 0 rgba(255,255,255,0.5), 0 -2px 0 rgba(255,255,255,0.5), 0 2px 0 rgba(255,255,255,0.5), 2px 0 0 rgba(255,255,255,0.5);
+	}
+</style>
+
+<div ng-controller="eff.macro.crop.formatController">
+	<div class="select-crop-panel">
+		<ul class="crop-formats">
+			<li ng-repeat="cropFormat in cropFormats" ng-model="model.value" >
+				<input id="crop_format_{{cropFormat.Value}}" type="radio" name="cropFormat" value="{{cropFormat.Value}}" ng-model="model.value" ng-checked="cropFormat.Value == model.value" />
+				<label for="crop_format_{{cropFormat.Value}}"><span class="item-illustration" style="height: calc(30px * {{cropFormat.Ratio}});"></span><span class="item-text"><localize class="ng-isolate-scope ng-scope" key="prevalues_{{cropFormat.DictionaryKey}}">{{cropFormat.Name}}</localize></span></label>
+			</li>
+		</ul>
+	</div>
+</div>

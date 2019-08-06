@@ -1,0 +1,63 @@
+@inherits UmbracoViewPage<IPublishedContent>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+
+@{ 
+
+    string description = string.Empty;
+
+    List <KeyValuePair<string, string>> metadata = new List<KeyValuePair<string, string>>();
+    int id = Model.Id;
+    bool showInfo = true;
+    var crop = string.Empty;
+    var viewData = this.ViewData;
+    if (ViewData.ContainsKey("showInfo") == true)
+    {
+        showInfo = (bool)ViewData["showInfo"];
+    }
+    if (ViewData.ContainsKey("crop") == true)
+    {
+        crop = (string) ViewData["crop"];
+    }
+    bool lazyLoad = true;
+    if (ViewData.ContainsKey("lazyLoad") == true)
+    {
+        lazyLoad = (bool)ViewData["lazyLoad"];
+    }
+
+    var imageUrl = crop != string.Empty ? Model.GetCropUrl(crop) : Model.Url + "?width=500";
+    var baseUrl = this.Request.Url.GetLeftPart(UriPartial.Authority) + (ViewData["baseURL"] as string);
+
+    string pinterestLink = "https://pinterest.com/pin/create/button/?url=" + Url.Encode(baseUrl + "?i=" + id.ToString()) + "&media=" + Url.Encode(baseUrl + imageUrl) + "&description=";
+
+    string metadataCaption = string.Empty;
+    IEnumerable<string> metadataJsonData = Enumerable.Empty<string>();
+    if (showInfo == true && metadata.Any())
+    {
+        metadataJsonData = metadata.Select(kvp => kvp.Key + ": " + kvp.Value);
+
+        metadataCaption = string.Join(", ", metadataJsonData);
+    }
+
+}
+
+<div class="item gallery-image">
+    <img class="gallery-item-image" alt="@description" @(Html.Raw(lazyLoad ? "data-src" : "src"))="@imageUrl" @(Html.Raw(lazyLoad ? "src" : "data-src"))="" data-share-label="@Umbraco.GetDictionaryValue("preval.image.share.label", "Del")" data-id="@Model.Id" data-download-id="@Model.GetKey().ToString().Replace("-", "")" data-pinterest="@Html.Raw(pinterestLink)" data-fullsize="@Model.Url()" data-caption="@metadataCaption" data-tags='@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(metadataJsonData))' />
+    @if (metadata.Any())
+    {
+        <div class="overlay-container">
+            <button type="button" class="btn-icon gallery-image-infobtn"><i class="ef-icon ef-info-thin"></i></button>
+			@*
+	        <div class="gallery-image-overlay overlay-panel collapse" id="info-@(id)">
+		        <div class="panel-inner">
+			        <ul class="list-image-metadata">
+				        @foreach (var info in metadata)
+				        {
+					        <li class="image-metadata-item"><span class="key">@Html.Raw(info.Key):</span><span>&nbsp;</span><span>@Html.Raw(info.Value)</span></li>
+				        }
+			        </ul>
+		        </div>
+	        </div>
+			*@
+        </div>
+    }
+</div>

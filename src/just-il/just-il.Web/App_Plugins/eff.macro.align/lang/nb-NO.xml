@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language alias="nb" intName="Norwegian bokmal" localName="Norsk bokmål" lcid="1044" culture="nb-NO">
+	<area alias="prevalues">
+		<key alias="AlignFull">Fullbredde</key>
+		<key alias="AlignLeft">Venstre</key>
+		<key alias="AlignRight">Høyre</key>
+		<key alias="AlignCenter">Sentrert</key>
+	</area>
+</language>

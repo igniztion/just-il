@@ -1,0 +1,45 @@
+@using umbraco.MacroEngines
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{ 
+	var thisPage = Model.Content;
+	var homePage = thisPage.AncestorOrSelf(1);
+	var parentSection = thisPage.AncestorOrSelf("sectionPage") != null ? thisPage.AncestorOrSelf("sectionPage") : null;
+	var parentSectionName = parentSection != null ? parentSection.Name : "no section parent";
+	var hideAsideNav = thisPage.HasValue("hideAsideNavigation") ? thisPage.GetPropertyValue<bool>("hideAsideNavigation") : false;
+	var hasParentSection = parentSection != null;
+
+	var displayMenu = (hasParentSection && !hideAsideNav);
+
+	if (hasParentSection)
+	{
+		var parentHidesMenu = parentSection.HasValue("showAsideNavigation") ? !parentSection.GetPropertyValue<bool>("showAsideNavigation") : false;
+
+		if(thisPage.Id != parentSection.Id)
+		{
+			if (parentHidesMenu)
+			{
+				displayMenu = false;
+			}
+		}
+	}
+}
+
+	@if (displayMenu)
+	{
+		var subMenu = parentSection.Children.Where("visible");
+		<div class="panel-aside">
+
+		@if (subMenu.Any())
+		{
+			<nav class="menu-sub">
+				<h2>@parentSectionName</h2>
+				<ul>
+					@foreach (var page in subMenu)
+					{
+						<li><a href="@page.Url">@page.Name</a></li>
+					}
+				</ul>
+			</nav>
+		}
+		</div>
+	}

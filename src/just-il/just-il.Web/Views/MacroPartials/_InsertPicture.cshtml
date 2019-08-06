@@ -1,0 +1,92 @@
+@using umbraco.MacroEngines
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	var thisPage = Model.Content;
+	//var homePage = Model.Content.AncestorOrSelf(1);
+
+	var imgAlign = Model.MacroParameters["macroImageAlign"] != null ? Model.MacroParameters["macroImageAlign"].ToString().Trim().ToLower().Replace(" ", "-") : "left";
+	var useCropSize = Model.MacroParameters["macroImgCropSize"] != null ? Model.MacroParameters["macroImgCropSize"].ToString().Trim().ToUpper().Replace(" ", "-") : "L";
+	var useCropFormat = Model.MacroParameters["macroImgCropFormat"] != null ? Model.MacroParameters["macroImgCropFormat"].ToString().Trim().Replace(" ", "-") : "original";
+	var disableFigureStyle = Model.MacroParameters["macroDisableStyling"] != null ? Model.MacroParameters["macroDisableStyling"].ToString() : "0";
+	var useCrop = string.Empty;
+	var imgUrl = string.Empty;
+	var getWidth = string.Empty;
+	var imageOwner = string.Empty;
+	var imageCopyright = string.Empty;
+	var imgId = Model.MacroParameters["macroImage"] != null ? Model.MacroParameters["macroImage"].ToString() : string.Empty;
+	var thisImage = imgId != string.Empty ? Umbraco.TypedMedia(Model.MacroParameters["macroImage"]) : null;
+	var figureStyle = disableFigureStyle != "1" ? "lined" : string.Empty; ;
+	var bannerLinkUrl = Model.MacroParameters["macroBannerLink"] != null ? Model.MacroParameters["macroBannerLink"].ToString() : string.Empty;
+	var bannerLinkTarget = Model.MacroParameters["macroBannerLinkTargetNew"] != null && Model.MacroParameters["macroBannerLinkTargetNew"].ToString() == "1" ? "_blank" : string.Empty;
+	switch (useCropSize.ToUpper())
+	{
+		case "XL":
+			getWidth = "1200px";
+			break;
+		case "L":
+			getWidth = "800px";
+			break;
+		case "M":
+			getWidth = "500px";
+			break;
+		case "S":
+			getWidth = "300px";
+			break;
+		case "XS":
+			getWidth = "200px";
+			break;
+		default:
+			getWidth = "500px";
+			break;
+	}
+
+	if (thisImage != null)
+	{
+		imageOwner = thisImage.HasValue("createdBy") ? "Foto: " + thisImage.GetPropertyValue<string>("createdBy") : string.Empty;
+		imageCopyright = thisImage.HasValue("copyright") ? thisImage.GetPropertyValue<string>("copyright") : string.Empty;
+	}
+
+	if (useCropFormat == "original")
+	{
+		imgUrl = thisImage != null ? thisImage.Url() + "?mode=fill&width=" + getWidth : string.Empty;
+	}
+	else
+	{
+		useCrop = useCropFormat + "-" + useCropSize;
+
+		imgUrl = thisImage != null ?thisImage.GetCropUrl(useCrop) : string.Empty;
+
+	}
+
+}
+<article class="macro-insert-image-wrap align-@(imgAlign) @figureStyle">
+	@if (bannerLinkUrl != string.Empty && bannerLinkUrl.StartsWith("http") && bannerLinkUrl.Contains("://"))
+	{
+		@Html.Raw("<a class=\"link-block\" href=\"" + @bannerLinkUrl + "\" target=\"" + bannerLinkTarget + "\">")
+	}
+	<figure class="macro-insert-image-fig align-@(imgAlign) width-max@(getWidth)" data-crop-format="@useCropFormat" data-crop-size="@useCropSize" data-crop-name="@useCrop" data-img-url="@imgUrl">
+		@if (imgUrl != string.Empty)
+		{
+			<div class="macro-insert-image-container">
+				<img class="macro-insert-image" src="@imgUrl"/>
+				@if (imageOwner != string.Empty || imageCopyright != string.Empty)
+				{
+				<span class="image-info-overlay">@imageOwner @imageCopyright</span>
+				}
+			</div>
+		}
+		else
+		{
+			<div class="image-dummy width-max@(getWidth)">[Image not found]</div>
+		}
+		@if (Model.MacroParameters["macroSubtext"] != null && Model.MacroParameters["macroSubtext"].ToString() != string.Empty)
+		{
+			<div class="macro-insert-image-caption width-max-@(getWidth)">@Model.MacroParameters["macroSubtext"]</div>
+		}
+	</figure>
+	@if (bannerLinkUrl != string.Empty && bannerLinkUrl.StartsWith("http") && bannerLinkUrl.Contains("://"))
+	{
+		@Html.Raw("</a>")
+	}
+</article>

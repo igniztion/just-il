@@ -1,0 +1,51 @@
+@using umbraco.MacroEngines
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+
+    var thisPage = Model.Content;
+
+    var baseURL = thisPage.Url;
+
+    bool useGrid = Model.MacroParameters["macroGalleryShowAsGrid"] != null ? Model.MacroParameters["macroGalleryShowAsGrid"].ToString() == "1" : false;
+    bool showInfo = Model.MacroParameters["macroGalleryShowInfoButton"] != null ? Model.MacroParameters["macroGalleryShowInfoButton"].ToString() == "1" : false;
+    IEnumerable<int> imageIDs = Enumerable.Empty<int>();
+    if (Model.MacroParameters["macroGalleryImages"] != null)
+    {
+        string idsString = Model.MacroParameters["macroGalleryImages"].ToString();
+        imageIDs = idsString.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(s => int.Parse(s));
+    }
+    if (imageIDs != null && imageIDs.Any())
+    {
+
+        <div class="gallery-wrap">
+
+            @if (useGrid == true)
+            {
+                <div class="gallery-grid">
+                    @foreach (var imageId in imageIDs)
+                    {
+                        IPublishedContent typedImage = Umbraco.TypedMedia(imageId);
+                        Html.RenderPartial("~/Views/Partials/_GalleryImage.cshtml", typedImage, new ViewDataDictionary { { "showInfo", showInfo }, { "baseURL", baseURL } });
+                    }
+                </div>
+            }
+            else
+            {
+                <ul class="gallery-carousel">
+                    @foreach (var imageId in imageIDs)
+                    {
+                        <li>
+                            @{ IPublishedContent typedImage = Umbraco.TypedMedia(imageId);
+                                Html.RenderPartial("~/Views/Partials/_GalleryImage.cshtml", typedImage, new ViewDataDictionary { { "showInfo", showInfo }, { "crop", "16x9-L" }, { "baseURL", baseURL }, { "lazyLoad", false } });
+                            }
+                        </li>
+                    }
+                </ul>
+            }
+
+        </div>
+
+    }
+
+}

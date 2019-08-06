@@ -1,0 +1,24 @@
+@using umbraco.MacroEngines
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using RJP.MultiUrlPicker.Models;
+
+@{
+	var thisPage = Model.Content;
+	var homePage = Model.Content.AncestorOrSelf(1);
+	var serviceNav = homePage.HasValue("serviceNavigation") ? homePage.GetPropertyValue<IEnumerable<Link>>("serviceNavigation") : null;
+}
+@if (serviceNav != null && serviceNav.Count() > 0)
+{
+	<nav class="nav-service">
+		<ul class="nav-list">
+			@foreach (var item in serviceNav)
+			{
+				<li class="nav-item">
+					<a class="nav-link" href="@item.Url" target="@item.Target">
+						@item.Name
+					</a>
+				</li>
+			}
+		</ul>
+	</nav>
+}

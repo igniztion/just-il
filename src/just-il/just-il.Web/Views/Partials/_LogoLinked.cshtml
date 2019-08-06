@@ -1,0 +1,47 @@
+@using umbraco.MacroEngines
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+@{ 
+	var homePage = Model.Content.AncestorOrSelf(1);
+	var useNegativeLogo = ViewData["useNeg"] != null && Convert.ToBoolean(ViewData["useNeg"].ToString());
+	var logoImg = homePage.HasValue("siteLogo") ? Umbraco.TypedMedia(homePage.GetPropertyValue<int>("siteLogo")) : null;
+	var logoNeg = homePage.HasValue("siteLogoNegative") ? Umbraco.TypedMedia(homePage.GetPropertyValue<int>("siteLogoNegative")) : null; 
+	var deactivateLink = homePage.HasValue("deactivateLogoLink") && homePage.GetPropertyValue<bool>("deactivateLogoLink");
+
+	if (useNegativeLogo && logoNeg != null)
+	{
+		// use negative image (if present and not null)
+		logoImg = logoNeg;
+	}
+
+	if(logoImg != null)
+	{
+		var fileType = logoImg.GetPropertyValue<string>("umbracoExtension").ToLower();
+
+		<div class="logo-wrap">
+		@if (deactivateLink)
+		{
+			@InsertImage(fileType, logoImg.Url)
+		}
+		else
+		{
+			<a href="@homePage.Url" alt="Go to homepage">
+				@InsertImage(fileType, logoImg.Url)
+			</a>
+		}
+		</div>
+	}
+}
+
+@helper InsertImage(string imgType, string imgUrl)
+{
+	if (imgType == "svg")
+	{
+		@Html.Raw(System.IO.File.ReadAllText(Server.MapPath(imgUrl)))
+	}
+	else
+	{
+		<img class="logo-image" alt="logo" src="@imgUrl" />
+	}	
+}
+

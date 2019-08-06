@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language alias="nb" intName="Norwegian bokmal" localName="Norsk bokmål" lcid="1044" culture="nb-NO">
+	<area alias="prevalues">
+		<key alias="SizeXL">Ekstra stor (1200)</key>
+		<key alias="SizeL">Stor (800)</key>
+		<key alias="SizeM">Medium (500)</key>
+		<key alias="SizeS">Liten (375)</key>
+		<key alias="SizeXS">Ekstra liten (250)</key>
+	</area>
+</language>

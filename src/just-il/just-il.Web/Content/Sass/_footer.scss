@@ -1,0 +1,81 @@
+@import "_variables";
+@import "_mixins";
+
+.footer {
+
+	&-band {
+		background: rgba(0,0,0,0.05);
+		padding: 5rem 0;
+	}
+
+	&-logo {
+		padding-right: 2rem;
+
+		@include maxwidth-medium-plus {
+		}
+	}
+
+	&-content {
+		@include display-flex;
+		@include flex-flow(row, wrap);
+		justify-content: flex-start;
+		align-items: stretch;
+
+		@include maxwidth-medium-plus {
+			/*@include flex-flow(row, wrap);*/
+		}
+
+		@include maxwidth-small-plus {
+			@include flex-flow(column, nowrap);
+		}
+
+		&-elements {
+			@include display-flex;
+			@include flex-flow(row, wrap);
+			justify-content: space-between;
+			align-items: stretch;
+
+			@include maxwidth-medium-plus {
+				@include flex-flow(row, wrap);
+			}
+
+			@include maxwidth-small-plus {
+				@include flex-flow(column, nowrap);
+			}
+		}
+	}
+
+	&-element {
+		@include flex(0, 0, auto);
+		padding: 2rem;
+		width: 25%;
+		
+		&:last-child{
+			@include flex(1,1,auto);
+		}
+
+		&.width{
+
+			&-75{
+				/*One element*/
+				width: 75%;
+			}
+
+			&-37_5{
+				/*Two elements*/
+				width: 37.5%;
+			}
+
+			&-25{
+				/* Three elements*/
+				width: 25%;
+			}
+		}
+
+		& > .inner{
+			h3{
+				margin-top:0;
+			}
+		}
+	}
+}

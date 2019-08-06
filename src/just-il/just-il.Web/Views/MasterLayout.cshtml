@@ -1,0 +1,65 @@
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+	Layout = null;
+	var userAgent = Request.UserAgent;
+	var browser = Request.Browser.Browser.ToLower();
+	var browserMajVer = Request.Browser.MajorVersion;
+	var browserDet = string.Empty;
+
+	if (browser == "internetexplorer" || browser == "ie")
+	{
+		browserDet = "ie ie-" + browserMajVer;
+	} else
+	{
+		if (userAgent.ToLower().Contains("edge/"))
+		{
+			browserDet = "edge";
+		} else
+		{
+			browserDet = browser + " " + browser + "-" + browserMajVer;
+		}
+	}
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Effera startpoint</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="ua" content="@userAgent" />
+    <link href="~/Static/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="~/Static/css/slick/slick.css" rel="stylesheet" />
+    <link href="~/Static/css/main.css" rel="stylesheet" defer />
+    <link href="~/Static/css/critical-css.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" rel="stylesheet" defer>
+    @Html.Partial("_PageOpenGraphTags")
+</head>
+    <body class="@browserDet" data-browser="@browser" data-browser-mver="@browserMajVer">
+        <div class="page-outer">
+            <header class="page-strip site-top">
+                <div class="container page-top">
+                    <div class="logo-area">
+                        @Html.Partial("_LogoLinked")
+                    </div>
+                    <div class="navigation-main">
+                        @Html.Partial("_MainNavigation")
+                    </div>
+                    <div class="navigation-service">
+                        @Html.Partial("_ServiceNavigation")
+                    </div>
+
+                </div>
+            </header>
+            <main class="page-main-container">
+                @RenderBody()
+            </main>
+            <footer class="page-strip footer-band">
+                @Html.Partial("_FooterContent")
+            </footer>
+        </div>
+        <script src="~/Static/js/vendor/bundle.js"></script>
+        <script src="~/Static/js/bootstrap/bootstrap.js"></script>
+        <script src="~/Static/js/main.js"></script>
+    </body>
+</html>

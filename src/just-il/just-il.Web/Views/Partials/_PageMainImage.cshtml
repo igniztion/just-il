@@ -1,0 +1,30 @@
+@using umbraco.MacroEngines
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+@{
+	var thisPage = Model.Content;
+}
+@if (thisPage.HasValue("mainImage"))
+{
+	var pageMainImage = thisPage.HasValue("mainImage") ? Umbraco.TypedMedia(thisPage.GetPropertyValue<string>("mainImage")) : null;
+
+	if (pageMainImage != null)
+	{
+		var ownerInfo = pageMainImage.HasValue("createdBy") ? pageMainImage.GetPropertyValue<string>("createdBy") : string.Empty;
+		var copyrightInfo = pageMainImage.HasValue("copyright") ? pageMainImage.GetPropertyValue<string>("copyright") : string.Empty;
+		var altInfo = ownerInfo != string.Empty ? "Foto: " + ownerInfo : string.Empty;
+		altInfo += copyrightInfo != string.Empty ? " " + copyrightInfo : string.Empty;
+
+		<section class="page-section hero-image-wrap">
+			<div class="hero-image-container">
+				<img class="hero-image" src="@pageMainImage.GetCropUrl("4x1-XXL")"/>
+
+				@if (altInfo != string.Empty)
+				{
+					<span class="image-info-overlay">@altInfo</span>
+				}
+			</div>
+		</section>
+	}
+}
+

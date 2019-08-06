@@ -1,0 +1,57 @@
+@using umbraco.MacroEngines
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{ 
+	var thisPage = Model.Content;
+	var homePage = Model.Content.AncestorOrSelf(1);
+	var featuredPagesList = thisPage.Children.Any() ? thisPage.Children().Where("visible") : null;
+	var showList = thisPage.HasValue("showChildrenList") ? thisPage.GetPropertyValue<bool>("showChildrenList") : false;
+}
+
+@if (featuredPagesList != null && showList == true)
+{
+	var numOfFeaturedItems = featuredPagesList.Count();
+	var numPartCssClass = "third";
+	if(numOfFeaturedItems == 4 || numOfFeaturedItems == 8)
+	{
+		numPartCssClass = "fourth";
+	} else if(numOfFeaturedItems == 2)
+	{
+		numPartCssClass = "half";
+	}
+
+	<div class="list-focus-wrap">
+		@if (thisPage.HasValue("focusArticlesHeadline"))
+		{
+			<h2>@thisPage.GetPropertyValue("focusArticlesHeadline")</h2>
+		}
+
+		<ul class="list-articles list-focus @numPartCssClass">
+			@foreach (var item in featuredPagesList.OrderBy("SortOrder desc"))
+			{
+				var image = item.HasValue("mainImage") ? Umbraco.TypedMedia(item.GetPropertyValue<Int32>("mainImage")) : null;
+				var itemLead = item.HasValue("lead") ? Umbraco.StripHtml(item.GetPropertyValue("lead").ToString()).ToString() : string.Empty;
+				itemLead = item.HasValue("introText") ? Umbraco.StripHtml(item.GetPropertyValue("introText").ToString()).ToString() : itemLead;
+
+				<li class="list-articles-item ">
+					<a class="link-block" href="@item.Url" title="@item.Name">
+						
+						<div class="item-image-wrap">
+							@if (image != null)
+							{
+								<img alt="@item.Name" src="@image.GetCropUrl("21x9-M")" />
+							}
+						</div>
+						<h3><span>@item.Name</span></h3>
+						<div class="text-wrap">
+
+							<div class="lead-text">
+								@Umbraco.Truncate(itemLead, 120, true)
+							</div>
+						</div>
+					</a>
+				</li>
+			}
+		</ul>
+	</div>
+}

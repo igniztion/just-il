@@ -1,0 +1,65 @@
+@using umbraco.MacroEngines
+@using Umbraco.Web.Models
+@using RJP.MultiUrlPicker.Models
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+@{
+	var thisPage = Model.Content;
+}
+@if (thisPage.HasValue("heroImage"))
+{
+	var pageHeroImage = thisPage.HasValue("heroImage") ? Umbraco.TypedMedia(thisPage.GetPropertyValue<string>("heroImage")) : null;
+	var pageHeroMobileImage = thisPage.HasValue("heroMobileImage") ? Umbraco.TypedMedia(thisPage.GetPropertyValue<string>("heroMobileImage")) : null;
+	var heroLink = thisPage.HasValue("heroImageLink") ? thisPage.GetPropertyValue<Link>("heroImageLink") : null;
+
+
+	if (pageHeroImage != null)
+	{
+		var ownerInfo = pageHeroImage.HasValue("createdBy") ? pageHeroImage.GetPropertyValue<string>("createdBy") : string.Empty;
+		var copyrightInfo = pageHeroImage.HasValue("copyright") ? pageHeroImage.GetPropertyValue<string>("copyright") : string.Empty;
+		var altInfo = ownerInfo != string.Empty ? "Foto: " + ownerInfo : string.Empty;
+		altInfo += copyrightInfo != string.Empty ? " " + copyrightInfo : string.Empty;
+
+
+
+		<figure class="hero-image-wrap" style="background-image:url(@(pageHeroImage.Url + "?width=1920"))">
+			@if (heroLink != null)
+			{
+				<a class="hero-link" href="@heroLink.Url">
+					@InsertImages(pageHeroImage, pageHeroMobileImage)
+				</a>
+			}
+			else
+			{
+				@InsertImages(pageHeroImage, pageHeroMobileImage)
+			}
+		</figure>
+	}
+}
+else
+{
+	<div class="hero-image-wrap empty"></div>
+}
+
+@helper InsertImages(IPublishedContent heroImage, IPublishedContent mobileImage)
+{
+	if (mobileImage != null)
+	{
+		if (heroImage.IsVisible())
+		{
+			<img alt="toppbilde" class="hero-image-desktop" src="@(heroImage.GetCropUrl("16x9-XXL"))"/>	
+		}
+		if (mobileImage.IsVisible())
+		{
+			<img alt="toppbilde (mobil)" class="hero-image-mobile" src="@(mobileImage.GetCropUrl("16x9-M"))" />	
+		}
+	}
+	else
+	{
+		if (heroImage.IsVisible())
+		{
+					<img class="hero-image" src="@(heroImage.GetCropUrl("16x9-XXL"))" />
+		}
+	}
+}
+

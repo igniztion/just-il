@@ -1,0 +1,39 @@
+@using umbraco.MacroEngines
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+@{
+	var thisPage = Model.Content;
+	var homePage = thisPage.Site();
+	var menuList = thisPage.AncestorsOrSelf();
+}
+
+@if (menuList != null && menuList.Any())
+{
+	<nav class="nav-breadcrumbs">
+		<ul class="nav-list">
+			@foreach (var item in menuList.OrderBy(x => x.Level))
+			{
+				<li class="nav-item">
+					@if (item.Id == thisPage.Id)
+					{
+						<a class="nav-link breadcrumb-item current" name="end"><span class="breadcrumb-item-text">@item.Name</span></a>
+					}
+					else
+					{
+						<a class="nav-link breadcrumb-item" href="@item.Url">
+							@if (item.Id == homePage.Id)
+							{
+								<i class="icon-ef icon-ef-home"></i>
+							}
+							else
+							{
+								<span class="breadcrumb-item-text">@item.Name</span>
+							}
+						</a>
+					}
+				</li>
+			}
+		</ul>
+	</nav>
+}
+

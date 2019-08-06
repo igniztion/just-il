@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language alias="en-US" intName="English US" localName="English US" lcid="1033" culture="en-US">
+	<area alias="prevalues">
+		<key alias="WidthFull">Full width</key>
+		<key alias="WidthThreeQuarters">Three quarters (3/4)</key>
+		<key alias="WidthTwoThirds">Two thirds (2/3)</key>
+		<key alias="WidthHalf">Half (1/2)</key>
+		<key alias="WidthOneThird">One third (1/3)</key>
+		<key alias="WidthOneQuarter">One quarter (1/4)</key>
+		<key alias="WidthAuto">Auto</key>
+	</area>
+	<area alias="labels">
+		<key alias="ElementSize">Size</key>
+	</area>
+</language>

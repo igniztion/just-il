@@ -1,0 +1,18 @@
+@inherits UmbracoViewPage<ContentModels.GalleryPage>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = "MasterLayout.cshtml";
+}
+
+@if (Model is ContentModels.IImageGallery)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @Html.Partial("~/Views/Partials/_ImageGallery.cshtml", (ContentModels.IImageGallery)Model, new ViewDataDictionary { { "baseUrl", Model.Url } })
+            </div>
+        </div>
+    </div>
+}
+
+
