@@ -414,7 +414,6 @@
     <Content Include="config\metablogConfig.config" />
     <Content Include="config\log4net.config" />
     <Content Include="config\HealthChecks.config" />
-    <Content Include="config\FileSystemProviders.config" />
     <Content Include="config\feedProxy.config" />
     <Content Include="config\ExamineSettings.config" />
     <Content Include="config\ExamineIndex.config" />
@@ -425,7 +424,7 @@
     <Content Include="config\applications.config" />
     <Content Include="config\404handlers.config" />
     <Content Include="App_Plugins\uSync\package.manifest" />
-    <Content Include="config\FileSystemProviders.release.config" />
+    <Content Include="config\FileSystemProviders.config" />
     <None Include="Content\Sass\GoogleFontPalanquin.scss" />
     <Content Include="Static\css\GoogleFontPalanquin.css.map" />
     <Content Include="Views\ContactsPage.cshtml" />
