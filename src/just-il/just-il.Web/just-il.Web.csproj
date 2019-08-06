@@ -407,9 +407,6 @@
     <Content Include="Views\Partials\_FooterContent.cshtml" />
     <Content Include="config\trees.config" />
     <Content Include="Static\css\bootstrap\bootstrap.css.map" />
-    <Content Include="Static\fonts\icons\web-icons.woff" />
-    <Content Include="Static\fonts\icons\web-icons.woff2" />
-    <Content Include="Static\fonts\icons\web-icons.eot" />
     <Content Include="Content\Sass\_icons.scss" />
     <Content Include="App_Plugins\ModelsBuilder\package.manifest" />
     <Content Include="config\tinyMceConfig.config" />
