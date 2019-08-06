@@ -10,7 +10,6 @@ var uglify = require("gulp-uglify");
 var util = require("gulp-util");
 var del = require("del");
 var concat = require("gulp-concat");
-var bower = require("gulp-bower");
 var merge = require("merge-stream");
 
 // Config
@@ -20,7 +19,7 @@ var config = {
         webRoot: "./just-il.Web",
         contentFolder: "/Content",
         staticOutputRoot: "/Static",
-        bootstrapFolder: "bower_components/bootstrap-sass/"
+        bootstrapFolder: "node_modules/@bower_components/bootstrap-sass/"
     },
     plugins: {
         uglify: {
@@ -61,12 +60,12 @@ var config = {
             vendorassets: {
                 name: "copy:vendorassets",
                 files: [
-                    "bower_components/jquery/dist/jquery.min.js",
-                    "bower_components/slick-carousel/slick/slick.min.js",
-                    "bower_components/slick-lightbox/dist/slick-lightbox.min.js",
-                    "bower_components/jquery-lazy/jquery.lazy.min.js",
-                    "bower_components/imagesloaded/imagesloaded.pkgd.min.js",
-                    "bower_components/masonry/dist/masonry.pkgd.min.js"
+                    "node_modules/@bower_components/jquery/dist/jquery.min.js",
+                    "node_modules/@bower_components/slick-carousel/slick/slick.min.js",
+                    "node_modules/@bower_components/slick-lightbox/dist/slick-lightbox.min.js",
+                    "node_modules/@bower_components/jquery-lazy/jquery.lazy.min.js",
+                    "node_modules/@bower_components/imagesloaded/imagesloaded.pkgd.min.js",
+                    "node_modules/@bower_components/masonry/dist/masonry.pkgd.min.js"
                 ],
                 outputFile: "bundle.js",
                 outputFolderPattern: "/js/vendor"
@@ -74,7 +73,7 @@ var config = {
             bootstrap: {
                 name: "copy:bootstrap",
                 files: [
-                    "bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js"
+                    "node_modules/@bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js"
                 ],
                 outputFile: "bootstrap.js",
                 outputFolderPattern: "/js/bootstrap"
@@ -82,21 +81,21 @@ var config = {
             bootstrapfonts: {
                 name: "copy:bootstrapfonts",
                 files: [
-                    "bower_components/bootstrap-sass/assets/fonts/bootstrap/*.{eot,svg,ttf,woff,woff2}"
+                    "node_modules/@bower_components/bootstrap-sass/assets/fonts/bootstrap/*.{eot,svg,ttf,woff,woff2}"
                 ],
                 outputFolderPattern: "/fonts/bootstrap"
             },
             slickimages: {
                 name: "copy:slickimages",
                 files: [
-                    "bower_components/slick-carousel/slick/*.gif"
+                    "node_modules/@bower_components/slick-carousel/slick/*.gif"
                 ],
                 outputFolderPattern: "/css/slick"
             },
             slickfonts: {
                 name: "copy:slickfonts",
                 files: [
-                    "bower_components/slick-carousel/slick/fonts/*.{eot,svg,ttf,woff,woff2}"
+                    "node_modules/@bower_components/slick-carousel/slick/fonts/*.{eot,svg,ttf,woff,woff2}"
                 ],
                 outputFolderPattern: "/css/slick/fonts"
             }
@@ -205,7 +204,7 @@ gulp.task("clean", function() {
     return del([css, images, scripts, fonts]);
 });
 
-gulp.task("copy", ["bower"], function (callback) {
+gulp.task("copy", function (callback) {
     var task = config.taskTypes.copy;
     return runSequence(task.vendorassets.name, task.bootstrap.name, task.bootstrapfonts.name, task.slickimages.name, task.slickfonts.name, callback);
 });
@@ -213,10 +212,6 @@ gulp.task("copy", ["bower"], function (callback) {
 gulp.task("build", function (callback) {
     var task = config.taskTypes.content;
     return runSequence("clean", "copy", task.sass.name, task.scripts.name, task.images.name, task.fonts.name, callback);
-});
-
-gulp.task("bower", function () {
-    return bower();
 });
 
 gulp.task('watch:sass', function () {
