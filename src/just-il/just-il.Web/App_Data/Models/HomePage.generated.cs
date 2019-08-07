@@ -22,7 +22,7 @@ namespace Umbraco.Web.PublishedContentModels
 {
 	/// <summary>#doctype.HomePage</summary>
 	[PublishedContentModel("homePage")]
-	public partial class HomePage : PublishedContentModel, IBannerAndHero, IFooterContent, IPageContent, ISEometaData, ISiteSettings
+	public partial class HomePage : PublishedContentModel, IFooterContent, IPageContent, ISEometaData, ISiteSettings
 	{
 #pragma warning disable 0109 // new is redundant
 		public new const string ModelTypeAlias = "homePage";
@@ -64,48 +64,30 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// #prop.HeroImage: #prop.HeroImage.d
+		/// #prop.FooterContentOne: #prop.FooterContentOne.d
 		///</summary>
-		[ImplementPropertyType("heroImage")]
-		public IPublishedContent HeroImage
+		[ImplementPropertyType("footerContentOne")]
+		public IHtmlString FooterContentOne
 		{
-			get { return Umbraco.Web.PublishedContentModels.BannerAndHero.GetHeroImage(this); }
+			get { return Umbraco.Web.PublishedContentModels.FooterContent.GetFooterContentOne(this); }
 		}
 
 		///<summary>
-		/// #prop.HeroImageLink: #prop.HeroImageLink.d
+		/// #prop.FooterContentThree: #prop.FooterContentThree.d
 		///</summary>
-		[ImplementPropertyType("heroImageLink")]
-		public IEnumerable<RJP.MultiUrlPicker.Models.Link> HeroImageLink
+		[ImplementPropertyType("footerContentThree")]
+		public IHtmlString FooterContentThree
 		{
-			get { return Umbraco.Web.PublishedContentModels.BannerAndHero.GetHeroImageLink(this); }
+			get { return Umbraco.Web.PublishedContentModels.FooterContent.GetFooterContentThree(this); }
 		}
 
 		///<summary>
-		/// #prop.HeroMobileImage: #prop.HeroMobileImage.d
+		/// #prop.FooterContentTwo: #prop.FooterContentTwo.d
 		///</summary>
-		[ImplementPropertyType("heroMobileImage")]
-		public IPublishedContent HeroMobileImage
+		[ImplementPropertyType("footerContentTwo")]
+		public IHtmlString FooterContentTwo
 		{
-			get { return Umbraco.Web.PublishedContentModels.BannerAndHero.GetHeroMobileImage(this); }
-		}
-
-		///<summary>
-		/// #prop.ShowImageInfo: #prop.ShowImageInfo.d
-		///</summary>
-		[ImplementPropertyType("showImageInfo")]
-		public bool ShowImageInfo
-		{
-			get { return Umbraco.Web.PublishedContentModels.BannerAndHero.GetShowImageInfo(this); }
-		}
-
-		///<summary>
-		/// #prop.FooterContentItems: #prop.FooterContentItems.d
-		///</summary>
-		[ImplementPropertyType("footerContentItems")]
-		public IEnumerable<IPublishedContent> FooterContentItems
-		{
-			get { return Umbraco.Web.PublishedContentModels.FooterContent.GetFooterContentItems(this); }
+			get { return Umbraco.Web.PublishedContentModels.FooterContent.GetFooterContentTwo(this); }
 		}
 
 		///<summary>

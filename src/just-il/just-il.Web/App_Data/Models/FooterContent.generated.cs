@@ -24,8 +24,14 @@ namespace Umbraco.Web.PublishedContentModels
 	/// <summary>_FooterContent</summary>
 	public partial interface IFooterContent : IPublishedContent
 	{
-		/// <summary>#prop.FooterContentItems</summary>
-		IEnumerable<IPublishedContent> FooterContentItems { get; }
+		/// <summary>#prop.FooterContentOne</summary>
+		IHtmlString FooterContentOne { get; }
+
+		/// <summary>#prop.FooterContentThree</summary>
+		IHtmlString FooterContentThree { get; }
+
+		/// <summary>#prop.FooterContentTwo</summary>
+		IHtmlString FooterContentTwo { get; }
 	}
 
 	/// <summary>_FooterContent</summary>
@@ -54,15 +60,39 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// #prop.FooterContentItems: #prop.FooterContentItems.d
+		/// #prop.FooterContentOne: #prop.FooterContentOne.d
 		///</summary>
-		[ImplementPropertyType("footerContentItems")]
-		public IEnumerable<IPublishedContent> FooterContentItems
+		[ImplementPropertyType("footerContentOne")]
+		public IHtmlString FooterContentOne
 		{
-			get { return GetFooterContentItems(this); }
+			get { return GetFooterContentOne(this); }
 		}
 
-		/// <summary>Static getter for #prop.FooterContentItems</summary>
-		public static IEnumerable<IPublishedContent> GetFooterContentItems(IFooterContent that) { return that.GetPropertyValue<IEnumerable<IPublishedContent>>("footerContentItems"); }
+		/// <summary>Static getter for #prop.FooterContentOne</summary>
+		public static IHtmlString GetFooterContentOne(IFooterContent that) { return that.GetPropertyValue<IHtmlString>("footerContentOne"); }
+
+		///<summary>
+		/// #prop.FooterContentThree: #prop.FooterContentThree.d
+		///</summary>
+		[ImplementPropertyType("footerContentThree")]
+		public IHtmlString FooterContentThree
+		{
+			get { return GetFooterContentThree(this); }
+		}
+
+		/// <summary>Static getter for #prop.FooterContentThree</summary>
+		public static IHtmlString GetFooterContentThree(IFooterContent that) { return that.GetPropertyValue<IHtmlString>("footerContentThree"); }
+
+		///<summary>
+		/// #prop.FooterContentTwo: #prop.FooterContentTwo.d
+		///</summary>
+		[ImplementPropertyType("footerContentTwo")]
+		public IHtmlString FooterContentTwo
+		{
+			get { return GetFooterContentTwo(this); }
+		}
+
+		/// <summary>Static getter for #prop.FooterContentTwo</summary>
+		public static IHtmlString GetFooterContentTwo(IFooterContent that) { return that.GetPropertyValue<IHtmlString>("footerContentTwo"); }
 	}
 }
