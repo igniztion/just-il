@@ -65,6 +65,10 @@ p{
 	line-height: 1.3em;
 }
 
+ul{
+    list-style: none;
+}
+
 .headline{
 
 	&-fat{
@@ -128,76 +132,80 @@ p{
 	}
 }
 
-.page{
+.page {
 
-	&-outer{
-		@include display-flex;
-		@include flex-flow(column, nowrap);
-		justify-content:space-between;
-		align-items:stretch;
-		height: 100%;
+    &-outer {
+        @include display-flex;
+        @include flex-flow(column, nowrap);
+        justify-content: space-between;
+        align-items: stretch;
+        height: 100%;
 
-		& > header,
-		& > footer {
-			@include flex(0,0,auto);
-		}
+        & > header,
+        & > footer {
+            @include flex(0,0,auto);
+        }
 
-		& > main{
-			@include flex(1,1,auto);
-		}
-	}
+        & > main {
+            @include flex(1,1,auto);
+        }
+    }
 
-	&-strip{
-		position: relative;
-		padding-top: 2rem;
-		padding-bottom: 2rem;
+    &-strip {
+        position: relative;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
 
-		&:first-child{
-			padding-top:0;
-		}
-	}
+        &:first-child {
+            padding-top: 0;
+        }
+    }
 
-	&-top{
-		display:flex;
-		justify-content: space-between;
-		align-items:flex-end;
-		flex-flow: row wrap;
-		padding-top: 2rem;
-		padding-bottom: 1rem;
-	}
+    &-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        flex-flow: row wrap;
+        padding-top: 2rem;
+        padding-bottom: 1rem;
 
-	&-breadcrumbs{
+        @include maxwidth-medium-plus {
+            padding-top: 1rem;
+        }
+    }
 
-		&-wrap{
-			padding-top:0;
-			padding-bottom:0;
-			background: rgba(0,0,0,0.05);
-		}
-	}
+    &-breadcrumbs {
 
-	&-section{
-		margin-bottom: 1rem;
+        &-wrap {
+            padding-top: 0;
+            padding-bottom: 0;
+            background: rgba(0,0,0,0.05);
+        }
+    }
 
-		&.menu-visible{
-			position:relative;
-			display: flex;
-			justify-content:space-between;
-			align-content:stretch;
-			flex-flow: row wrap;
+    &-section {
+        margin-bottom: 1rem;
 
-			& > .panel-aside{
-				flex: 0 1 auto;
-				width: 30%;
-				min-width: 300px;
-			}
+        &.menu-visible {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-content: stretch;
+            flex-flow: row wrap;
 
-			& > .panel-content{
-				flex: 1 1 auto;
-				min-width: 300px;
-				width: 69.5%;
-			}
-		}
-	}
+            & > .panel-aside {
+                flex: 0 1 auto;
+                width: 30%;
+                min-width: 300px;
+            }
+
+            & > .panel-content {
+                flex: 1 1 auto;
+                min-width: 300px;
+                width: 69.5%;
+            }
+        }
+    }
 }
 
 .panel{
@@ -240,14 +248,12 @@ p{
 		color: $color-black;
 
 		&:hover{
-			text-decoration: none;
 			background: rgba(0,0,0,0.05);
 
 			& > h1,
 			& > h2,
 			& > h3 {
-				text-decoration: underline;
-				text-decoration-color:$color-bright;
+				text-decoration: none;
 			}
 		}
 

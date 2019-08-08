@@ -1,4 +1,4 @@
-@import "_variables";
+﻿@import "_variables";
 @import "_mixins";
 
 .nav{
@@ -26,9 +26,16 @@
 
 			.btn-nav-toggle{
 				position: absolute;
-				top: 3rem;
+				top: 2rem;
 				right: 1rem;
+                padding-right: 0;
+                background-color: $color-secondary;
+
 			}
+
+            .link-text {
+                display: none;
+            }
 
 			&-panel{
 				position: fixed;
@@ -162,4 +169,22 @@
 			text-decoration: none;
 		}
 	}
+}
+
+.menu-sub {
+    ul {
+        padding-left: 1em;
+    }
+
+    li:before {
+        position: absolute;
+        font-size: 0.7rem;
+        font-family: 'web-icons';
+        content: "";
+        left: 0.25em;
+    }
+
+    a, a:visited {
+        color: $color-dark;
+    }
 }
