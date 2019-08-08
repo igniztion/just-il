@@ -316,6 +316,7 @@
     <Content Include="App_Plugins\uSync\uSyncDashboard.html" />
     <Content Include="App_Plugins\uSync\uSyncDashboardController.js" />
     <Content Include="App_Plugins\uSync\uSyncDashboardService.js" />
+    <Content Include="browserconfig.xml" />
     <Content Include="config\grid.editors.config.js" />
     <Content Include="config\Lang\cs-CZ.user.xml" />
     <Content Include="config\Lang\da-DK.user.xml" />
@@ -341,6 +342,7 @@
     <Content Include="css\LimitedRichText.css" />
     <Content Include="css\_textEditorsCommon.css" />
     <Content Include="default.aspx" />
+    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="packages.config">
       <SubType>Designer</SubType>
@@ -352,7 +354,34 @@
     <Content Include="Static\css\critical-css.css" />
     <Content Include="Static\css\GoogleFontPalanquin.css" />
     <Content Include="Static\css\main.css" />
+    <Content Include="Static\css\slick\ajax-loader.gif" />
+    <Content Include="Static\css\slick\fonts\slick.svg" />
+    <Content Include="Static\css\slick\slick.css" />
     <Content Include="Static\fonts\bootstrap\glyphicons-halflings-regular.svg" />
+    <Content Include="Static\img\android-icon-144x144.png" />
+    <Content Include="Static\img\android-icon-192x192.png" />
+    <Content Include="Static\img\android-icon-36x36.png" />
+    <Content Include="Static\img\android-icon-48x48.png" />
+    <Content Include="Static\img\android-icon-72x72.png" />
+    <Content Include="Static\img\android-icon-96x96.png" />
+    <Content Include="Static\img\apple-icon-114x114.png" />
+    <Content Include="Static\img\apple-icon-120x120.png" />
+    <Content Include="Static\img\apple-icon-144x144.png" />
+    <Content Include="Static\img\apple-icon-152x152.png" />
+    <Content Include="Static\img\apple-icon-180x180.png" />
+    <Content Include="Static\img\apple-icon-57x57.png" />
+    <Content Include="Static\img\apple-icon-60x60.png" />
+    <Content Include="Static\img\apple-icon-72x72.png" />
+    <Content Include="Static\img\apple-icon-76x76.png" />
+    <Content Include="Static\img\apple-icon-precomposed.png" />
+    <Content Include="Static\img\apple-icon.png" />
+    <Content Include="Static\img\favicon-16x16.png" />
+    <Content Include="Static\img\favicon-32x32.png" />
+    <Content Include="Static\img\favicon-96x96.png" />
+    <Content Include="Static\img\ms-icon-144x144.png" />
+    <Content Include="Static\img\ms-icon-150x150.png" />
+    <Content Include="Static\img\ms-icon-310x310.png" />
+    <Content Include="Static\img\ms-icon-70x70.png" />
     <Content Include="Static\js\bootstrap\bootstrap.js" />
     <Content Include="Static\js\main.js" />
     <Content Include="Static\js\vendor\bundle.js" />
@@ -523,6 +552,14 @@
     <None Include="Content\Sass\slick\slick.scss" />
     <Content Include="Views\MacroPartials\_InsertGallery.cshtml" />
     <Content Include="uSync\data\macro\macroInsertGallery.config" />
+    <Content Include="Static\fonts\icons\web-icons.eot" />
+    <Content Include="Static\fonts\icons\web-icons.woff" />
+    <Content Include="Static\fonts\icons\web-icons.woff2" />
+    <Content Include="Static\css\slick\fonts\slick.eot" />
+    <Content Include="Static\css\slick\fonts\slick.ttf" />
+    <Content Include="Static\css\slick\fonts\slick.woff" />
+    <Content Include="Static\css\slick\slick.css.map" />
+    <Content Include="manifest.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -545,7 +582,6 @@
   <ItemGroup>
     <Folder Include="App_Data\Models\" />
     <Folder Include="Media\" />
-    <Folder Include="Static\img\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

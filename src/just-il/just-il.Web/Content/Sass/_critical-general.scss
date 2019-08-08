@@ -95,7 +95,7 @@ p{
 	}
 
 	&-wrap{
-		max-width: 300px;
+		max-width: 80px;
 		display: flex;
 
 		img{
@@ -218,18 +218,18 @@ p{
 	}
 }
 
-.site{
+.site {
 
-	&-top{
-		padding-top:0;
-		padding-bottom:0;
-		background: #000;
-		color: #fff;
+    &-top {
+        padding-top: 0;
+        padding-bottom: 0;
+        background: $color-primary;
+        color: #fff;
 
-		a{
-			color: #fff;
-		}
-	}
+        a {
+            color: #fff;
+        }
+    }
 }
 
 .link{
