@@ -49,12 +49,14 @@
 						var contactImage = contact.HasValue("image") ? Umbraco.TypedMedia(contact.GetPropertyValue<int>("image")) : null;
 						var contactWorkTitle = contact.HasValue("workTitle") ? contact.GetPropertyValue<string>("workTitle") : string.Empty;
 						var contactDepartment = contact.HasValue("department") ? ", " + contact.GetPropertyValue<string>("department") : string.Empty;
+                        var contactEmail = contact.HasValue("email") ? contact.GetPropertyValue<string>("email") : string.Empty;
+                        var contactPhone = contact.HasValue("phone") ? contact.GetPropertyValue<string>("phone") : string.Empty;
 
 						<article class="list-item">
 							<div class="item-image">
 								@if (contactImage != null)
 								{
-									<img alt="@contactImage.Name" src="@contactImage.GetCropUrl("16x9-M")"/>
+									<img alt="@contactImage.Name" src="@contactImage.GetCropUrl("1x1-S")"/>
 								}
 							</div>
 							<div class="item-text">
@@ -69,14 +71,14 @@
 									}
 								</div>
 								<div class="item-contact-info">
-									@if (contact.HasValue("email"))
+									@if (!string.IsNullOrEmpty(contactEmail))
 									{
-										<div class="contact-worktitle"><span class="label">E-post:</span><span class="value">@contact.GetPropertyValue("email")</span></div>
+										<div class="contact-email"><span class="label">E-post:</span><span class="value"><a href="mailto:@contactEmail" title="Send @contactFullName en e-post">@contactEmail</a></span></div>
 									}
 
-									@if (contact.HasValue("phone"))
+									@if (!string.IsNullOrEmpty(contactPhone))
 									{
-										<div class="contact-worktitle"><span class="label">Telefon:</span><span class="value">@contact.GetPropertyValue("phone")</span></div>
+										<div class="contact-phone"><span class="label">Telefon:</span><span class="value"><a href="tel:@contactPhone" title="Ring @contactFullName">@contactPhone</a></span></div>
 									}
 								</div>
 							</div>
@@ -90,10 +92,8 @@
 					@Html.Raw(thisPage.GetPropertyValue("bodyText"))
 				</div>
 			}
+		    </div>
 		</div>
-		</div>
-			</article>			
-
 			@Html.Partial("_ChildArticlesList")
 		</section>
 
