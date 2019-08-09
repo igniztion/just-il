@@ -496,6 +496,8 @@
     <Content Include="config\BackOfficeTours\getting-started.json" />
     <Content Include="config\applications.config" />
     <Content Include="config\404handlers.config" />
+    <Content Include="config\imageprocessor\cache.azure.config" />
+    <Content Include="config\FileSystemProviders.azure.config" />
     <None Include="Content\Sass\GoogleFontPalanquin.scss" />
     <Content Include="Static\css\GoogleFontPalanquin.css.map" />
     <Content Include="Views\ContactsPage.cshtml" />
