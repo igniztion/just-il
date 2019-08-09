@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="../masterpages/umbracoPage.Master" CodeBehind="search.aspx.cs" Inherits="umbraco.presentation.members.search" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="../masterpages/umbracoPage.Master" CodeBehind="search.aspx.cs" Inherits="umbraco.presentation.members.search" %>
 <%@ Register TagPrefix="cc1" Namespace="umbraco.uicontrols" Assembly="controls" %>
 <%@ Register Src="~/umbraco/members/MemberSearch.ascx" TagName="MemberSearch" TagPrefix="umb" %>
 

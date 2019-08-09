@@ -1,4 +1,4 @@
-// Umbraco SpeechBubble Javascript
+﻿// Umbraco SpeechBubble Javascript
 
 // Dependency Loader Constructor
 function UmbracoSpeechBubble(id) {

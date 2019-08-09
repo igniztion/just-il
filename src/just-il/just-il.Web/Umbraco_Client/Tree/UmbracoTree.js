@@ -1,4 +1,4 @@
-/// <reference path="/umbraco_client/Application/NamespaceManager.js" />
+﻿/// <reference path="/umbraco_client/Application/NamespaceManager.js" />
 /// <reference path="/umbraco_client/Application/UmbracoUtils.js" />
 /// <reference path="/umbraco_client/ui/jquery.js" />
 /// <reference path="/umbraco_client/ui/jqueryui.js" />

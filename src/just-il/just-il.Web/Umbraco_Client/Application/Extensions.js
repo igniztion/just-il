@@ -1,4 +1,4 @@
-(function ($) {
+﻿(function ($) {
 
     //extensions to base classes such as String and extension methods for jquery.
     //NOTE: jquery must be loaded before this file.

@@ -1,4 +1,4 @@
-/// <reference path="/umbraco_client/Application/NamespaceManager.js" />
+﻿/// <reference path="/umbraco_client/Application/NamespaceManager.js" />
 /// <reference name="MicrosoftAjax.js"/>
 /// <reference path="/umbraco_client/Application/JQuery/jquery.ba-bbq.min.js" />
 

@@ -1,4 +1,4 @@
-(function($) {
+﻿(function($) {
 
     $.fn.umbDateTimePicker = function(showTime, chooseDateTxt, noDateTxt, removeDateTxt) {
         return $(this).each(function() {

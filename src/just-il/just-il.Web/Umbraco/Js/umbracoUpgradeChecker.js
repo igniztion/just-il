@@ -1,4 +1,4 @@
-function umbracoCheckUpgrade(result) {
+﻿function umbracoCheckUpgrade(result) {
     if (result) {
         if (result.UpgradeType.toLowerCase() != 'none') {
             if (UmbSpeechBubble == null) {

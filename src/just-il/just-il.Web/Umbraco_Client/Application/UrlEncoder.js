@@ -1,4 +1,4 @@
-Umbraco.Sys.registerNamespace("Umbraco.Utils");
+﻿Umbraco.Sys.registerNamespace("Umbraco.Utils");
 
 Umbraco.Utils.UrlEncoder = {
 

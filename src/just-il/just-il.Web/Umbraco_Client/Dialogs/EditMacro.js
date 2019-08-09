@@ -1,4 +1,4 @@
-Umbraco.Sys.registerNamespace("Umbraco.Dialogs");
+﻿Umbraco.Sys.registerNamespace("Umbraco.Dialogs");
 
 (function ($) {
 

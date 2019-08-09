@@ -1,4 +1,4 @@
-(function ($) {
+﻿(function ($) {
     function _1(_2) {
         $(_2).appendTo("body");
         $(_2).addClass("menu-top");

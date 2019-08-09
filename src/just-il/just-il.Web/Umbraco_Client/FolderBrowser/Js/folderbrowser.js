@@ -1,4 +1,4 @@
-
+﻿
 Umbraco.Sys.registerNamespace("Umbraco.Controls");
 
 (function ($, Base, window, document, undefined) {

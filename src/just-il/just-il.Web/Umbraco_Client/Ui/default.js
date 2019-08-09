@@ -1,4 +1,4 @@
-//
+﻿//
 //    This File contains all standard javascript helpers for normal umbraco pages, 
 //    for resizing, event handling etc.
 //    All UI controls should expect this js file to be present.

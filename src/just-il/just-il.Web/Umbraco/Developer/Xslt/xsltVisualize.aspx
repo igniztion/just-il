@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="../../masterpages/umbracoDialog.Master" AutoEventWireup="true"
+﻿<%@ Page Language="C#" MasterPageFile="../../masterpages/umbracoDialog.Master" AutoEventWireup="true"
     CodeBehind="xsltVisualize.aspx.cs" ValidateRequest="false" Inherits="umbraco.presentation.umbraco.developer.Xslt.xsltVisualize" %>
 
 <%@ Register TagPrefix="cc1" Namespace="umbraco.uicontrols" Assembly="controls" %>

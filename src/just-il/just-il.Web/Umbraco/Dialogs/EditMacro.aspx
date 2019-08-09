@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="../MasterPages/UmbracoDialog.Master" AutoEventWireup="true" CodeBehind="EditMacro.aspx.cs" Inherits="Umbraco.Web.UI.Umbraco.Dialogs.EditMacro" %>
+﻿<%@ Page Language="C#" MasterPageFile="../MasterPages/UmbracoDialog.Master" AutoEventWireup="true" CodeBehind="EditMacro.aspx.cs" Inherits="Umbraco.Web.UI.Umbraco.Dialogs.EditMacro" %>
 
 <%@ Register TagPrefix="umb" Namespace="ClientDependency.Core.Controls" Assembly="ClientDependency.Core" %>
 
@@ -17,7 +17,7 @@
                 Umbraco.Dialogs.EditMacro.getInstance().init({
                     useAspNetMasterPages: <%=UmbracoConfig.For.UmbracoSettings().Templates.UseAspNetMasterPages.ToString().ToLower() %>,
                     codeEditorElementId: "<%=Request.CleanForXss("objectId") %>",
-                    renderingEngine: "<%=Request.GetItemAsString("renderingEngine", "Mvc")%>",
+                    renderingEngine: "<%=Request.CleanForXss("renderingEngine", "Mvc")%>",
                     macroAlias: '<%= _macroAlias %>'
                 });
             });

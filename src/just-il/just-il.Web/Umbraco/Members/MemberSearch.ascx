@@ -1,4 +1,4 @@
-<%@ Control Language="C#" AutoEventWireup="True" CodeBehind="MemberSearch.ascx.cs" Inherits="umbraco.presentation.umbraco.members.MemberSearch" %>
+﻿<%@ Control Language="C#" AutoEventWireup="True" CodeBehind="MemberSearch.ascx.cs" Inherits="umbraco.presentation.umbraco.members.MemberSearch" %>
 <%@ Register TagPrefix="cc1" Namespace="umbraco.uicontrols" Assembly="controls" %>
   <div class="dashboardWrapper">
     <h2>Member Search</h2>

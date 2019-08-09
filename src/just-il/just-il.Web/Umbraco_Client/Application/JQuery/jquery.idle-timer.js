@@ -1,4 +1,4 @@
-/*!
+﻿/*!
 * jQuery idleTimer plugin
 * version 0.9.100511
 * by Paul Irish. 

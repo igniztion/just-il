@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" Inherits="Umbraco.Web.UI.Pages.UmbracoEnsuredPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" Inherits="Umbraco.Web.UI.Pages.UmbracoEnsuredPage" %>
 <%--
     This page is required because we cannot reload the angular app with a changed Hash since it just detects the hash and doesn't reload.
     So this is used purely for a full reload of an angular app with a changed hash.

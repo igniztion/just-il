@@ -1,4 +1,4 @@
-/// <reference path="/umbraco_client/Application/NamespaceManager.js" />
+﻿/// <reference path="/umbraco_client/Application/NamespaceManager.js" />
 /// <reference path="UmbracoUtils.js" />
 /// <reference path="/umbraco_client/modal/modal.js" />
 /// <reference name="MicrosoftAjax.js"/>

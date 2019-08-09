@@ -1,4 +1,4 @@
-function actionDeleteRelationType(relationTypeId, relationTypeName) {
+﻿function actionDeleteRelationType(relationTypeId, relationTypeName) {
 
     if (confirm('Are you sure you want to delete "' + relationTypeName + '"?')) {
         $.ajax({

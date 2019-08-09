@@ -1,4 +1,4 @@
-/// <reference name="MicrosoftAjax.js"/>
+﻿/// <reference name="MicrosoftAjax.js"/>
 /// <reference path="/umbraco_client/Application/NamespaceManager.js" />
 
 Umbraco.Sys.registerNamespace("Umbraco.Controls");

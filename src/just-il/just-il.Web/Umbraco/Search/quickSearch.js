@@ -1,4 +1,4 @@
-(function ($) {
+﻿(function ($) {
 
     $.fn.UmbQuickSearch = function (url) {
 

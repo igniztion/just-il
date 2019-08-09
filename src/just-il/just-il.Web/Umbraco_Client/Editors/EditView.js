@@ -1,4 +1,4 @@
-Umbraco.Sys.registerNamespace("Umbraco.Editors");
+﻿Umbraco.Sys.registerNamespace("Umbraco.Editors");
 
 (function ($) {
 
